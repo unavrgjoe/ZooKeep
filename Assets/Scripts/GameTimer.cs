@@ -24,4 +24,22 @@ public class GameTimer : MonoBehaviour
             yield return wait;
         }
     }
+
+
+    public float timeOfDay = 0f;            // range 0..24
+    public float secondsPerGameHour = 15f;  // 1 game hour every 15 real seconds
+
+    void Update()
+    {
+        // advance by deltaTime scaled to hours/second, and wrap to 0..24
+        timeOfDay = Mathf.Repeat(
+            timeOfDay + (Time.deltaTime / secondsPerGameHour),
+            24f
+        );
+        Utilities.timeOfDay = timeOfDay;
+    }
+
+
+
+
 }

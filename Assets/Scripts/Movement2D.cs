@@ -27,12 +27,12 @@ public class Movement2D : MonoBehaviour
 
         // Target velocity from last requested direction
         Vector2 targetVel = direction * speed;
-        Debug.Log("Target direction: " + direction + " Speed: " + speed);
+        // Debug.Log("Target direction: " + direction + " Speed: " + speed);
         // Smooth toward target to avoid jitter / instant stops
         var maxDelta = acceleration * Time.fixedDeltaTime;
         rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, targetVel, maxDelta);
-        Debug.Log("maxDelta: " + maxDelta);
-        Debug.Log("Current Vel: " + rb.linearVelocity);
+        //Debug.Log("maxDelta: " + maxDelta);
+        // Debug.Log("Current Vel: " + rb.linearVelocity);
     }
     // FixedUpdate applies velocity based on the last SetMove
 }
