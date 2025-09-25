@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abf56ed0cd87647499d1d293373db597, type: 3}
-  m_Name: MugWart
+  m_Name: MuzWump
   m_EditorClassIdentifier: 
-  HP: 10
-  speed: 30
-  vision: 7
-  tier: 5
-  acceleration: -1
+  HP: 0
+  speed: 0
+  vision: 0
+  tier: 0
+  acceleration: 0
+  behaviors: []

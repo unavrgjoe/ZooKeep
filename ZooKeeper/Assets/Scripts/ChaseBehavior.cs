@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Creatures/ChaseBehavior", fileName = "ChaseBehaviorSO")]
 public class ChaseBehavior : BehaviorSO
 {
+    public override int basePriority;
     //for entity in visible layers
     //public int skittish = 0; //use for extra fearless or scared creatures now implemented in parent
     public override int Score(AIController ctrl)
@@ -17,7 +18,10 @@ public class ChaseBehavior : BehaviorSO
             if (dd < d2) { d2 = dd; prey = e; }
         }
         float distanceWeight = 1;
-        Debug.Log("Total score is: " + prey.tier + " * 10 + " + basePriority + " + " + (int)(((Vector2)prey.transform.position - pos).sqrMagnitude * distanceWeight));
+        if (prey != null)
+        {
+            Debug.Log("Total score is: " + prey.tier + " * 10 + " + basePriority + " + " + (int)(((Vector2)prey.transform.position - pos).sqrMagnitude * distanceWeight)); //
+        }
         if (prey != null)
         {
             ctrl.prey = prey;

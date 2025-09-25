@@ -25,16 +25,16 @@ public class AIController : MonoBehaviour
 
     public LayerMask targetLayers;
     public Entity predator; //current
-    public Entity prey; //current
+    public Entity prey = null; //current
     void Awake()
     {
-        targetLayers = LayerMask.NameToLayer("Entities");
+        targetLayers = LayerMask.GetMask("Entities");
         tf = transform;
         rb = GetComponent<Rigidbody2D>();
         movement ??= GetComponent<Movement2D>();
         //attacks  ??= GetComponent<AttackController>();
         entity ??= GetComponent<Entity>();
-        if (entity != null) tier = entity.tier;
+        if (entity != null) tier = entity.tier; vision = entity.creature.vision; behaviors = entity.creature.behaviors;
     }
     public List<Entity> visibleEntities = new List<Entity>();
 
@@ -72,8 +72,11 @@ public class AIController : MonoBehaviour
             var ent = c.GetComponentInParent<Entity>();
             if (ent == null) continue;
 
-            if (!visibleEntities.Contains(ent))   // simple dedupe if a creature has multiple colliders
+            if (!visibleEntities.Contains(ent))
+            { // simple dedupe if a creature has multiple colliders
+                Debug.Log("Adding to Visisble Entities");
                 visibleEntities.Add(ent);
+            }
         }
         Debug.Log("Visisble Entities: " + visibleEntities);
     }

@@ -9,7 +9,7 @@ public class Entity : MonoBehaviour
 {
     [SerializeField] int maxHP;
     [SerializeField] int currentHP;
-    [SerializeField] Creature creature;
+    [SerializeField] public Creature creature;
     [SerializeField] Movement2D movement;
     [SerializeField] AIController controller;
     [SerializeField] public int tier;
@@ -27,6 +27,7 @@ public class Entity : MonoBehaviour
             tier = creature.tier;
             maxHP = creature.HP;
             if (movement != null) movement.speed = creature.speed;
+            if (creature.acceleration == -1 || creature.acceleration == 0) movement.acceleration = 200;
             if (controller != null) { controller.tier = creature.tier; controller.vision = creature.vision; }
             //if (attacks != null) attacks.LoadSlots(definition.attacks);
         }
