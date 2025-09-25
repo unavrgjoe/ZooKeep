@@ -4099,6 +4099,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: f37b17bb0b0ad9b40bbfb66a0d2079bf, type: 2}
     - target: {fileID: 4939085758464737385, guid: def5368603aa7aa408898e62f6151ff6, type: 3}
+      propertyPath: speed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4939085758464737385, guid: def5368603aa7aa408898e62f6151ff6, type: 3}
       propertyPath: acceleration
       value: 200
       objectReference: {fileID: 0}
@@ -4563,7 +4567,7 @@ MonoBehaviour:
   movement: {fileID: 1504395023}
   entity: {fileID: 1504395029}
   playerInput: {fileID: 1504395025}
-  playerSpeed: 20
+  playerSpeed: 14
   playerTier: 3
 --- !u!114 &1504395025
 MonoBehaviour:

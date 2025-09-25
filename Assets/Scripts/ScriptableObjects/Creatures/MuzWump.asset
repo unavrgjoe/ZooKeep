@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf56ed0cd87647499d1d293373db597, type: 3}
   m_Name: MuzWump
   m_EditorClassIdentifier: 
-  HP: 0
-  speed: 0
-  vision: 0
-  tier: 0
-  acceleration: 0
-  behaviors: []
+  HP: 15
+  speed: 12
+  vision: 3
+  tier: 4
+  acceleration: -1
+  behaviors:
+  - {fileID: 11400000, guid: fde8f32983930a14aae830b1a5b68b8a, type: 2}
+  - {fileID: 11400000, guid: ea2292f72e164ac47a88947c76c90379, type: 2}
