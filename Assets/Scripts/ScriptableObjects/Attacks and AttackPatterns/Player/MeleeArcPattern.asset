@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MeleeArcPattern
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeArcPattern
+  arcAngle: 90
+  arcRadius: 3
+  slashVisualPrefab: {fileID: 3504805033346122922, guid: f4b9b8dfc2d52bb4daf00a6fad4f60e4, type: 3}
+  visualDuration: 0.1
+  scaleVisualToArc: 1

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Schwarff
   m_EditorClassIdentifier: 
   HP: 30
-  speed: 11
+  speed: 7
   vision: 7
   tier: 6
   acceleration: 50
   behaviors:
   - {fileID: 11400000, guid: fde8f32983930a14aae830b1a5b68b8a, type: 2}
+  - {fileID: 11400000, guid: ea2292f72e164ac47a88947c76c90379, type: 2}
   - {fileID: 11400000, guid: ea2292f72e164ac47a88947c76c90379, type: 2}

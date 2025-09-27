@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: MuzWump
   m_EditorClassIdentifier: 
   HP: 15
-  speed: 12
+  speed: 9
   vision: 3
   tier: 4
   acceleration: -1
   behaviors:
   - {fileID: 11400000, guid: fde8f32983930a14aae830b1a5b68b8a, type: 2}
   - {fileID: 11400000, guid: ea2292f72e164ac47a88947c76c90379, type: 2}
+  - {fileID: 11400000, guid: 6613e5bfce457ca4eb4662840ba8faa5, type: 2}

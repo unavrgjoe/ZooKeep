@@ -26,6 +26,7 @@ public class Entity : MonoBehaviour
         {
             tier = creature.tier;
             maxHP = creature.HP;
+            currentHP = maxHP;
             if (movement != null) movement.speed = creature.speed;
             if (creature.acceleration == -1 || creature.acceleration == 0) movement.acceleration = 200;
             if (controller != null) { controller.tier = creature.tier; controller.vision = creature.vision; }
@@ -61,11 +62,16 @@ public class Entity : MonoBehaviour
 
     public void HandleDeath()
     {
-        //if Player{}
-        //else:
-        //instantiate item drops(or pull from pool)
-        //death animation
-        Destroy(gameObject);
+        if (gameObject.CompareTag("Player"))
+        {
+            Debug.Log("DEAD");
+        }
+        else
+        {
+            //instantiate item drops(or pull from pool)
+            //death animation
+            Destroy(gameObject);
+        }
     }
 
     public void Heal(int Heal)

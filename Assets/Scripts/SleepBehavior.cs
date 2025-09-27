@@ -9,6 +9,9 @@ public class SleepBehavior : BehaviorSO
     {
         if (Utilities.timeOfDay > sleepTime)
         {
+            //if(NoiseNearby){
+            // return 0;
+            // }
             return sleepPriority;
         }
         else

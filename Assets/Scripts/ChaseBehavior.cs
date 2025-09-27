@@ -36,6 +36,7 @@ public class ChaseBehavior : BehaviorSO
             // Direction AWAY from threat (unit vector):
             Vector2 toPrey = ((Vector2)ctrl.prey.transform.position - (Vector2)ctrl.transform.position).normalized; /*self - threat for oppsoite of threat*/
             ctrl.movement.SetMove(toPrey);
+            ctrl.UpdateCombat(ctrl.prey);
         }
 
     }

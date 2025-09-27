@@ -27,7 +27,7 @@ public class GameTimer : MonoBehaviour
 
 
     public float timeOfDay = 0f;            // range 0..24
-    public float secondsPerGameHour = 15f;  // 1 game hour every 15 real seconds
+    public float secondsPerGameHour = 0.5f;  // 1 game hour every 15 real seconds
 
     void Update()
     {

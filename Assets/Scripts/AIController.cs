@@ -10,11 +10,7 @@ public class AIController : MonoBehaviour
     public Entity entity;
 
     [Header("Behavior Set (priority from data)")]
-    //public BehaviorSO[] behaviors;   // plug BehaviorSO assets 
-    //public TraitSO[] traits;
-    public List<string> states = new List<string>();
     public List<BehaviorSO> behaviors;
-
 
     //for perceiving surroundings
     Rigidbody2D rb;
@@ -26,6 +22,8 @@ public class AIController : MonoBehaviour
     public LayerMask targetLayers;
     public Entity predator; //current
     public Entity prey = null; //current
+    public AttackController attackController;
+    public AttackBrainSO attackBrain; //used to determine which attack to use... and hopefully other combat focused ai later
     void Awake()
     {
         targetLayers = LayerMask.GetMask("Entities");
@@ -34,6 +32,7 @@ public class AIController : MonoBehaviour
         movement ??= GetComponent<Movement2D>();
         //attacks  ??= GetComponent<AttackController>();
         entity ??= GetComponent<Entity>();
+        attackController ??= GetComponent<AttackController>();
         if (entity != null) tier = entity.tier; vision = entity.creature.vision; behaviors = entity.creature.behaviors;
     }
     public List<Entity> visibleEntities = new List<Entity>();
@@ -86,7 +85,7 @@ public class AIController : MonoBehaviour
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, vision);
     }
-    BehaviorSO best = null;
+    BehaviorSO best = null; //the currently active behavior
     void Update()
     {
 
@@ -97,13 +96,23 @@ public class AIController : MonoBehaviour
             int s = b.Score(this); //calls a method on each of the behaviors to determine their priority (cant just have a var for this cuz variables cant be changed in-game on SO)
             if (s > bestScore) { bestScore = s; best = b; }
         }
-
-
     }
 
     void FixedUpdate()
     {
         best?.OnPriority(this);
+    }
+
+    public void UpdateCombat(Entity attackTarget) //called from current behavior
+    {
+        if (attackTarget != null && attackBrain != null && attackController != null)
+        {
+            AttackSO selectedAttack = attackBrain.SelectAttack(attackController, attackTarget);
+            if (selectedAttack != null)
+            {
+                attackController.TryAttack(selectedAttack, attackTarget.transform.position);
+            }
+        }
     }
 
 }
