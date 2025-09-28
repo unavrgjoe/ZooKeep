@@ -17,12 +17,12 @@ public class ChaseBehavior : BehaviorSO
             float dd = ((Vector2)e.transform.position - pos).sqrMagnitude;
             if (dd < d2) { d2 = dd; prey = e; }
         }
-        float distanceWeight = 1;
+        float distanceWeight = 0.5f;
         if (prey != null)
         {
             //Debug.Log("Total score is: " + prey.tier + " * 10 + " + basePriority + " + " + (int)(((Vector2)prey.transform.position - pos).sqrMagnitude * distanceWeight));
             ctrl.prey = prey;
-            return prey.tier * 10 + basePriority + (int)(((Vector2)prey.transform.position - pos).sqrMagnitude * distanceWeight);
+            return prey.tier * 5 + basePriority + (int)(((Vector2)prey.transform.position - pos).sqrMagnitude * distanceWeight);
         }
         else { return 0; }
 

@@ -19,10 +19,11 @@ public class FleeBehavior : BehaviorSO
             float dd = ((Vector2)e.transform.position - pos).sqrMagnitude;
             if (dd < d2) { d2 = dd; threat = e; }
         }
+        float distanceWeight = 0.5f;
         if (threat != null)
         {
             ctrl.predator = threat;
-            return (threat.tier - my) * 10 + basePriority + (int)((Vector2)threat.transform.position - pos).sqrMagnitude;
+            return (threat.tier - my) * 5 + basePriority + (int)(((Vector2)threat.transform.position - pos).sqrMagnitude * distanceWeight);
         }
         else { return 0; }
     }

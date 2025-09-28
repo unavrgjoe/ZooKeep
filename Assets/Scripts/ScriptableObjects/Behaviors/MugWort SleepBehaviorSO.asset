@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda19bc01270f1c4bbadc5c688736009, type: 3}
   m_Name: MugWort SleepBehaviorSO
   m_EditorClassIdentifier: 
-  basePriority: 50
+  basePriority: 0
   skittish: 0
-  sleepPriority: 80
+  sleepPriority: 100
   sleepTime: 16

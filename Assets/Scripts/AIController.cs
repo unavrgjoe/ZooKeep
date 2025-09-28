@@ -16,9 +16,16 @@ public class AIController : MonoBehaviour
     Rigidbody2D rb;
     Transform tf;
     public int tier; //primarily held on Entity
+    public float vision; //radius of view to identify targets and food
 
-    public float vision; //radius of view to identify targets
+    [Header("FOOOOOOOOD")]
+    public float hunger = 100;
+    public float hungerRate = 2f;
+    private float lastFoodScan = 0f;
+    private WorldItem targetFood;
+    private const float FOOD_SCAN_INTERVAL = 1f;
 
+    [Header("Other")]
     public LayerMask targetLayers;
     public Entity predator; //current
     public Entity prey = null; //current
@@ -34,6 +41,7 @@ public class AIController : MonoBehaviour
         entity ??= GetComponent<Entity>();
         attackController ??= GetComponent<AttackController>();
         if (entity != null) tier = entity.tier; vision = entity.creature.vision; behaviors = entity.creature.behaviors;
+        hunger = 100; //was mostly for testing but it kinda makes sense animals spawn in hungry
     }
     public List<Entity> visibleEntities = new List<Entity>();
 
@@ -41,6 +49,7 @@ public class AIController : MonoBehaviour
     void OnDisable() { GameTimer.Tick2s -= Perceive; }
     void Perceive()
     {
+        hunger += Time.deltaTime * 10; //uptick hunger cuz why not do it here
         // 1) Grab everything in range on the target layers
         var hits = Physics2D.OverlapCircleAll(tf.position, vision, targetLayers);
 
@@ -73,11 +82,11 @@ public class AIController : MonoBehaviour
 
             if (!visibleEntities.Contains(ent))
             { // simple dedupe if a creature has multiple colliders
-                Debug.Log("Adding to Visisble Entities");
+                //Debug.Log("Adding to Visisble Entities");
                 visibleEntities.Add(ent);
             }
         }
-        Debug.Log("Visisble Entities: " + visibleEntities);
+        //Debug.Log("Visisble Entities: " + visibleEntities);
     }
 
     void OnDrawGizmosSelected()
@@ -92,8 +101,10 @@ public class AIController : MonoBehaviour
         int bestScore = -2;
         foreach (var b in behaviors)
         {
+
             if (!b) continue;
             int s = b.Score(this); //calls a method on each of the behaviors to determine their priority (cant just have a var for this cuz variables cant be changed in-game on SO)
+            Debug.Log("Behavior: " + b + " Score: " + s);
             if (s > bestScore) { bestScore = s; best = b; }
         }
     }
@@ -112,6 +123,53 @@ public class AIController : MonoBehaviour
             {
                 attackController.TryAttack(selectedAttack, attackTarget.transform.position);
             }
+        }
+    }
+
+    public WorldItem ScanForFood()
+    {
+        if (Time.time - lastFoodScan < FOOD_SCAN_INTERVAL) return targetFood;
+        lastFoodScan = Time.time;
+
+        // Use ItemManager's efficient transform-based detection
+        List<WorldItem> nearbyItems = ItemManager.Instance.GetItemsInRange(transform.position, vision);
+
+        WorldItem closestFood = null;
+        float closestDistSqr = float.MaxValue;
+
+        foreach (var item in nearbyItems)
+        {
+            //if (!(item.itemData is FoodItemSO food)) continue;
+
+            // Check if we can eat this food
+            if (item.itemData is FoodItemSO food)
+            {
+                if (food.CanEat(entity))
+                {
+                    float distSqr = (item.transform.position - transform.position).sqrMagnitude;
+                    if (distSqr < closestDistSqr)
+                    {
+                        closestDistSqr = distSqr;
+                        closestFood = item;
+                    }
+                }
+                else { continue; }
+            }
+            else { continue; }
+        }
+        targetFood = closestFood;
+        return targetFood;
+    }
+
+    public void TryEatFood(WorldItem food)
+    {
+        if (food == null) return;
+
+        float distSqr = (food.transform.position - transform.position).sqrMagnitude;
+        if (distSqr < 2.25f) // 1.5f squared - eating range
+        {
+            food.TryEat(entity);
+            targetFood = null;
         }
     }
 

@@ -10,7 +10,7 @@ public class SwordAttackSO : AttackSO
     public override void Execute(Entity attacker, Vector2 targetPos)
     {
         // Custom sword logic
-        Debug.Log("Sword swing!");
+        //Debug.Log("Sword swing!");
         pattern.DrawAttackGizmo(); //assuming MeleeAttackPattern which actually has this method implemented and not empty
         base.Execute(attacker, targetPos); // Call parent's version
         // Could add: Check for parry, play sword-specific effects, etc.

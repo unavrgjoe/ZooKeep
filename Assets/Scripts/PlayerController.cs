@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem; // New Input System
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] int playerSpeed;
     [SerializeField] int playerTier;
+    public float hunger;
     public AttackController attackController;
 
     [Header("Attack Settings")]
@@ -60,6 +62,7 @@ public class PlayerController : MonoBehaviour
                 selectedAttackIndex = i;
             }
         }
+        //ItemManager.Instance.Test();
     }
 
     void OnAttack(InputAction.CallbackContext context)
@@ -71,7 +74,7 @@ public class PlayerController : MonoBehaviour
         Vector2 mouseScreenPos = _mousePosition.ReadValue<Vector2>();
         Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, mainCamera.nearClipPlane));
         mouseWorldPos.z = 0;  //dont need cuz 2d?? //welp apparently i do or mouse position is based on lower left corenr of screen
-        Debug.Log("Attack Attempt, Mouse Position: " + mouseWorldPos);
+        //Debug.Log("Attack Attempt, Mouse Position: " + mouseWorldPos);
         // Try to attack towards mouse position
         AttackSO selectedAttack = attackController.availableAttacks[selectedAttackIndex];
         attackController.TryAttack(selectedAttack, mouseWorldPos);
@@ -110,6 +113,16 @@ public class PlayerController : MonoBehaviour
             {
                 Gizmos.DrawWireSphere(transform.position, attack.range);
             }
+        }
+    }
+    public void TryEatFood(WorldItem food)
+    {
+        if (food == null) return;
+
+        float distSqr = (food.transform.position - transform.position).sqrMagnitude;
+        if (distSqr < 2.25f) // 1.5f squared - eating range
+        {
+            food.TryEat(entity);
         }
     }
 

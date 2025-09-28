@@ -19,7 +19,7 @@ public class GameTimer : MonoBehaviour
         var wait = new WaitForSeconds(intervalSeconds);
         while (true)
         {
-            Debug.Log("Invkoing 2 second Action");
+            //Debug.Log("Invkoing 2 second Action");
             Tick2s?.Invoke();
             yield return wait;
         }

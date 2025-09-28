@@ -14,6 +14,10 @@ public class Creature : ScriptableObject
 
     public int acceleration;
     public List<BehaviorSO> behaviors;
+    public List<ItemSO> drops;
+    public List<FoodType> diet;
+
+
 
     //public BehaviorSO[] behaviors;
 
