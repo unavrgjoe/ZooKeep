@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 30
   speed: 7
-  vision: 7
+  vision: 20
   tier: 6
   acceleration: 50
   behaviors:

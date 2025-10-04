@@ -32,6 +32,11 @@ public class FleeBehavior : BehaviorSO
     {
         // Direction AWAY from threat (unit vector):
         Vector2 awayDir = ((Vector2)ctrl.transform.position - (Vector2)ctrl.predator.transform.position).normalized; /*self - threat for oppsoite of threat*/
-        ctrl.movement.SetMove(awayDir);
+        if (ctrl.pathfinding != null)
+        {
+            ctrl.pathfinding.SetMove(awayDir);
+
+        }
+        else { ctrl.movement.SetMove(awayDir); }
     }
 }

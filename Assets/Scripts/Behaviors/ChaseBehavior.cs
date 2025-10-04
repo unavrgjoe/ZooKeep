@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Creatures/ChaseBehavior", fileName = "ChaseBehaviorSO")]
@@ -35,7 +36,12 @@ public class ChaseBehavior : BehaviorSO
             //Debug.Log("Prey found");
             // Direction AWAY from threat (unit vector):
             Vector2 toPrey = ((Vector2)ctrl.prey.transform.position - (Vector2)ctrl.transform.position).normalized; /*self - threat for oppsoite of threat*/
-            ctrl.movement.SetMove(toPrey);
+            if (ctrl.pathfinding != null)
+            {
+                ctrl.pathfinding.SetMove(toPrey);
+
+            }
+            else { ctrl.movement.SetMove(toPrey); }
             ctrl.UpdateCombat(ctrl.prey);
         }
 

@@ -31,12 +31,14 @@ public class AIController : MonoBehaviour
     public Entity prey = null; //current
     public AttackController attackController;
     public AttackBrainSO attackBrain; //used to determine which attack to use... and hopefully other combat focused ai later
+    public Pathfinding pathfinding;
     void Awake()
     {
         targetLayers = LayerMask.GetMask("Entities");
         tf = transform;
         rb = GetComponent<Rigidbody2D>();
         movement ??= GetComponent<Movement2D>();
+        pathfinding ??= GetComponent<Pathfinding>();
         //attacks  ??= GetComponent<AttackController>();
         entity ??= GetComponent<Entity>();
         attackController ??= GetComponent<AttackController>();

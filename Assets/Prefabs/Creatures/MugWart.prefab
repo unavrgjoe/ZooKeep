@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2770622001193644643}
   - component: {fileID: 1359056051666409000}
   - component: {fileID: 8860690982249991895}
+  - component: {fileID: -7496405353486152493}
   m_Layer: 6
   m_Name: MugWart
   m_TagString: Untagged
@@ -184,6 +185,7 @@ MonoBehaviour:
   prey: {fileID: 0}
   attackController: {fileID: 0}
   attackBrain: {fileID: 0}
+  pathfinding: {fileID: 0}
   visibleEntities: []
 --- !u!114 &1359056051666409000
 MonoBehaviour:
@@ -204,6 +206,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   tier: 0
   diet: 
+  drops: []
 --- !u!114 &8860690982249991895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,3 +221,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   acceleration: 200
+--- !u!114 &-7496405353486152493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123602618276738190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9148d7bc1c9bd8c4aad5d10e0f15a2dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avoidanceForce: 5
+  rayCount: 4
+  rayDistance: 2
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  debugDrawRays: 1
+  verboseDebug: 1
+  stuckThreshold: 0.5
+  stuckTimeThreshold: 1
+  wallFollowDuration: 3

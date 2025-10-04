@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8122973335395398207}
   - component: {fileID: 7726405284758942639}
   - component: {fileID: 3465162746248728735}
+  - component: {fileID: -1895281576725367059}
   m_Layer: 6
   m_Name: Schwarff
   m_TagString: Untagged
@@ -184,7 +185,8 @@ MonoBehaviour:
   predator: {fileID: 0}
   prey: {fileID: 0}
   attackController: {fileID: 0}
-  attackBrain: {fileID: 11400000, guid: 7961d4dcd15355940af8453621dc992e, type: 2}
+  attackBrain: {fileID: 0}
+  pathfinding: {fileID: 0}
   visibleEntities: []
 --- !u!114 &8122973335395398207
 MonoBehaviour:
@@ -205,6 +207,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   tier: 0
   diet: 
+  drops: []
 --- !u!114 &7726405284758942639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,3 +237,23 @@ MonoBehaviour:
   availableAttacks:
   - {fileID: 11400000, guid: bedc74e4e30f8864bbb2fec4a2e1dcad, type: 2}
   cooldownsDebug: []
+--- !u!114 &-1895281576725367059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3661570448039530746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9148d7bc1c9bd8c4aad5d10e0f15a2dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedDirection: {x: 0, y: 0}
+  actualDirection: {x: 0, y: 0}
+  rayDistance: 2
+  rayCount: 8
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  showDebugRays: 1
