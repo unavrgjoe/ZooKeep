@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MeleeArcPattern
   m_EditorClassIdentifier: Assembly-CSharp::MeleeArcPattern
   arcAngle: 90
-  arcRadius: 3
+  arcRadius: 2
   slashVisualPrefab: {fileID: 3504805033346122922, guid: f4b9b8dfc2d52bb4daf00a6fad4f60e4, type: 3}
-  visualDuration: 0.1
+  visualDuration: 0.2
   scaleVisualToArc: 1
